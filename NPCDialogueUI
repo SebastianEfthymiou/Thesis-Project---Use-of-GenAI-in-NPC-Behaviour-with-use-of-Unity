@@ -1,0 +1,35 @@
+using TMPro;
+using UnityEngine;
+using System.Collections;
+
+public class NPCDialogueUI : MonoBehaviour
+{
+    public TextMeshProUGUI dialogueText;
+    public float displayTime = 3f;
+
+    private Coroutine currentDialogueRoutine;
+
+    void Start()
+    {
+        if (dialogueText != null)
+            dialogueText.text = "";
+    }
+
+    public void ShowDialogue(string message)
+    {
+        if (dialogueText == null) return;
+
+        if (currentDialogueRoutine != null)
+            StopCoroutine(currentDialogueRoutine);
+
+        currentDialogueRoutine = StartCoroutine(ShowDialogueRoutine(message));
+    }
+
+    private IEnumerator ShowDialogueRoutine(string message)
+    {
+        dialogueText.text = "NPC: " + message;
+        yield return new WaitForSeconds(displayTime);
+        dialogueText.text = "";
+        currentDialogueRoutine = null;
+    }
+}
