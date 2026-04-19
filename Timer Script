@@ -1,0 +1,38 @@
+using UnityEngine;
+using TMPro;
+
+public class Timer : MonoBehaviour
+{
+    public TextMeshProUGUI timerText;
+
+    private float elapsedTime = 0f;
+    private bool isGameActive = true;
+
+    void Update()
+    {
+        if (!isGameActive) return;
+
+        elapsedTime += Time.deltaTime;
+
+        int minutes = Mathf.FloorToInt(elapsedTime / 60);
+        int seconds = Mathf.FloorToInt(elapsedTime % 60);
+
+        timerText.text = string.Format("Time survived: {0:00}:{1:00}", minutes, seconds);
+    }
+
+    public void StartTimer()
+    {
+        isGameActive = true;
+    }
+
+    public void StopTimer()
+    {
+        isGameActive = false;
+    }
+
+    public void ResetTimer()
+    {
+        elapsedTime = 0f;
+        timerText.text = "Time survived: 00:00";
+    }
+}
