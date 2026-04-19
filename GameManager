@@ -1,0 +1,43 @@
+using UnityEngine;
+using TMPro;
+
+public class GameManager : MonoBehaviour
+{
+    public Timer timer;
+    public TextMeshProUGUI gameOverText;
+    public MonoBehaviour playerMovement;
+    public MonoBehaviour[] npcMovements;
+
+
+    private bool gameEnded = false;
+
+    void Start()
+    {
+        if (gameOverText != null)
+            gameOverText.gameObject.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        if (gameEnded) return;
+        gameEnded = true;
+
+        if (timer != null)
+            timer.StopTimer();
+
+        if (gameOverText != null)
+            gameOverText.gameObject.SetActive(true);
+
+        if (playerMovement != null)
+            playerMovement.enabled = false;
+
+        foreach (var npc in npcMovements)
+        {
+            if (npc != null)
+                npc.enabled = false;
+        }
+
+        Debug.Log("Game Over");
+
+    }
+}
