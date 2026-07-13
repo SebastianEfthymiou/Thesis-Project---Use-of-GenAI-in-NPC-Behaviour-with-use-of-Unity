@@ -1,0 +1,19 @@
+using System;
+
+[Serializable]
+public class NpcGameState
+{
+    public string npcState;
+    public string lastKnownPlayerZone;
+    public string[] recentEscapeDirections;
+    public string[] allowedTactics;
+    public string[] allowedZones;
+}
+
+[Serializable]
+public class NpcDecision
+{
+    public string tactic;
+    public string targetZone;
+    public string dialogue;
+}

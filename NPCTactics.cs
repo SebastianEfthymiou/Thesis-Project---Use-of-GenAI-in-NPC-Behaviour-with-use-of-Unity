@@ -1,0 +1,8 @@
+public enum NPCTactic
+{
+    NormalPatrol,
+    AggressiveChase,
+    GuardEscapeRoute,
+    SearchLastKnownPosition,
+    AmbushAtZone
+}
